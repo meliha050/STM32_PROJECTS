@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := week5_SPI
+BUILD_ARTIFACT_NAME := week6_adc_2
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-week5_SPI.elf \
+week6_adc_2.elf \
 
 MAP_FILES += \
-week5_SPI.map \
+week6_adc_2.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-week5_SPI.list \
+week6_adc_2.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: week5_SPI.elf secondary-outputs
+main-build: week6_adc_2.elf secondary-outputs
 
 # Tool invocations
-week5_SPI.elf week5_SPI.map: $(OBJS) $(USER_OBJS) C:\stm.exe\STM32CubeIDE_1.16.1\week5_SPI\STM32F072RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "week5_SPI.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\stm.exe\STM32CubeIDE_1.16.1\week5_SPI\STM32F072RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="week5_SPI.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+week6_adc_2.elf week6_adc_2.map: $(OBJS) $(USER_OBJS) C:\stm.exe\STM32CubeIDE_1.16.1\week6_adc_2\STM32F072RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "week6_adc_2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\stm.exe\STM32CubeIDE_1.16.1\week6_adc_2\STM32F072RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="week6_adc_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-week5_SPI.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "week5_SPI.list"
+week6_adc_2.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "week6_adc_2.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout week5_SPI.elf week5_SPI.list week5_SPI.map
+	-$(RM) default.size.stdout week6_adc_2.elf week6_adc_2.list week6_adc_2.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
